@@ -38,6 +38,24 @@ Fire up your terminal and run this beauty! Adjust paths as needed. 🚀
 Here's the full **Bash script** for easy copying:
 
 ```bash
+#!/bin/bash
+
+SESSION_NAME="ngpost"  # Name der screen-Session
+
+# Prüfe nur, wenn nicht in screen
+if [[ -z "$STY" ]]; then
+    # Nicht in screen-Session
+    if screen -ls | grep -q "$SESSION_NAME"; then
+        echo "Screen-Session '$SESSION_NAME' läuft bereits. Skript beendet, um Doppelstarts zu verhindern."
+        exit 1
+    else
+        echo "Screen-Session '$SESSION_NAME' läuft nicht. Starte sie..."
+        screen -dmS "$SESSION_NAME" bash "$0"
+        echo "Session gestartet. Skript läuft nun darin."
+        exit 0
+    fi
+fi
+
 ./ngPost_v4.16_libssl3-x86_64.AppImage \
   --monitor /your_path/usenet_upload \
   --rm_posted \
