@@ -56,7 +56,9 @@ if [[ -z "$STY" ]]; then
     fi
 fi
 
-./ngPost_v4.16_libssl3-x86_64.AppImage \
+LOG_FILE="/home/sb100/Desktop/ngpost.log"
+
+stdbuf -o0 -e0 ./ngPost_v4.16_libssl3-x86_64.AppImage \
   --monitor /your_path/usenet_upload \
   --rm_posted \
   --compress \
@@ -83,7 +85,7 @@ fi
   --pass ********* \
   --connection 40 \
   --no-latest_first \
-  --output /your_path/nzb
+  --output /your_path/nzb 2>&1 | tee -a "$LOG_FILE"
 ```
 
 ## 📖 Parameter Explanations
