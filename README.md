@@ -56,7 +56,7 @@ if [[ -z "$STY" ]]; then
     fi
 fi
 
-LOG_FILE="/home/sb100/Desktop/ngpost.log"
+LOG_FILE="/your_path/ngpost.log"
 
 stdbuf -o0 -e0 ./ngPost_v4.16_libssl3-x86_64.AppImage \
   --monitor /your_path/usenet_upload \
